@@ -24,5 +24,5 @@ Written by Pipin Fitriadi <pipinfitriadi@gmail.com>, 31 December 2024
     python manage.py runserver
     ```
 
-    > [!IMPORTANT]
-    > Local webapp can be access at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+> [!IMPORTANT]
+> Local webapp can be access at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
