@@ -13,4 +13,6 @@ Run this sequences command on your Unix-like Terminal
 ```sh
 python3 -m venv venv/
 . venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
 ```
