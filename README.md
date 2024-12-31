@@ -16,12 +16,13 @@ Written by Pipin Fitriadi <pipinfitriadi@gmail.com>, 31 December 2024
     pip install --upgrade pip
     pip install -r requirements.txt
     python -c 'from django.core.management.utils import get_random_secret_key; print(f"SECRET_KEY='"'"'{get_random_secret_key()}'"'"'")' > .env
+    deactivate
     ```
 
 - Run this command on your Unix-like Terminal, everytime Webapp need to run locally:
 
     ```sh
-    python manage.py runserver
+    venv/bin/python manage.py runserver
     ```
 
 > [!IMPORTANT]
