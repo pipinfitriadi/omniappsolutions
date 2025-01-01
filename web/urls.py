@@ -7,7 +7,7 @@
 # Written by Pipin Fitriadi <pipinfitriadi@gmail.com>, 31 December 2024
 
 """
-URL configuration for movie project.
+URL configuration for web project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -24,8 +24,9 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 urlpatterns = [
+    path('', include('movie.urls')),
     path('admin/', admin.site.urls),
 ]

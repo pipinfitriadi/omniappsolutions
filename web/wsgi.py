@@ -7,7 +7,7 @@
 # Written by Pipin Fitriadi <pipinfitriadi@gmail.com>, 31 December 2024
 
 """
-WSGI config for movie project.
+WSGI config for web project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -19,6 +19,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'src.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'web.settings')
 
 application = get_wsgi_application()
