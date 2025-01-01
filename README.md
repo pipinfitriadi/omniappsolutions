@@ -16,6 +16,9 @@ Written by Pipin Fitriadi <pipinfitriadi@gmail.com>, 31 December 2024
     pip install --upgrade pip
     pip install -r requirements.txt
     python -c 'from django.core.management.utils import get_random_secret_key; print(f"SECRET_KEY='"'"'{get_random_secret_key()}'"'"'")' > .env
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py shell -c 'from movie.views import json_to_db; json_to_db()'
     deactivate
     ```
 

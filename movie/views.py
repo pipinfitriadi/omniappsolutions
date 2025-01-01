@@ -6,8 +6,32 @@
 # Proprietary and confidential
 # Written by Pipin Fitriadi <pipinfitriadi@gmail.com>, 1 January 2025
 
+import json
+
+from django.db import transaction
 from django.http import HttpResponse
+from django.shortcuts import render
+
+from .models import Movie
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the movie index.")
+    return render(request, "index.html", {"data": Movie.objects.all()})
+
+
+def detail(request, movie_id):
+    return HttpResponse("Hello, world. You're at the movie detail.")
+
+
+def json_to_db():
+    with open("movies.json") as file:
+        with transaction.atomic():
+            for row in json.load(file):
+                Movie(**{
+                    {
+                        "imgPath": "img_path",
+                        "mpaaRating": "mpaa_rating",
+                        "userRating": "user_rating"
+                    }.get(key, key): value
+                    for key, value in row.items()
+                }).save()
