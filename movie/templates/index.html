@@ -24,7 +24,7 @@
                 </article>
             </a>{% endfor %}
         </main>{% if data.has_next %}
-        <a class="infinite-more-link" href="?p={{ data.next_page_number }}&q={{ request.GET.q }}">More</a>{% endif %}{% else %}<main class="d-flex justify-content-center align-items-center">Movies Not Found</main>{% endif %}{% endblock %}
+        <a class="infinite-more-link" href="{% url 'index' %}{% querystring q=request.GET.q p=data.next_page_number %}">More</a>{% endif %}{% else %}<main class="d-flex justify-content-center align-items-center">Movies Not Found</main>{% endif %}{% endblock %}
 
 {% block script %}{% if data %}{% load static %}
         <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
