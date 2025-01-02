@@ -1,32 +1,47 @@
 {% extends "base.html" %}
 
 {% block style %}
-        <style>
-            a { width: 144px; }
-            img {
-                width: 144px;
-                height: 213px;
-            }
-        </style>{% endblock %}
+<style>
+    a { width: 144px; }
+    img {
+        width: 144px;
+        height: 213px;
+    }
+</style>
+{% endblock %}
 
-{% block header %}<form>
-                <input value="{{ request.GET.q }}" name="q" type="search" placeholder="Search movies..." aria-label="Search"/>
-            </form>{% endblock %}
+{% block header %}
+<form>
+    <input value="{{ request.GET.q }}" name="q" type="search" placeholder="Search movies..." aria-label="Search"/>
+</form>
+{% endblock %}
 
-{% block main %}{% if data %}<h4>Popular Movies this month</h4>
-        <main class="d-flex flex-wrap gap-3 infinite-container">{% for row in data %}
+{% block main %}
+    {% if data %}
+        <h4>Popular Movies this month</h4>
+        <main class="d-flex flex-wrap gap-3 infinite-container">
+            {% for row in data %}
             <a href="{% url 'detail' movie_id=row.id %}" class="text-dark link-offset-2 link-underline link-underline-opacity-0 infinite-item">
-                <img class="border d-flex justify-content-center align-items-center" src="{{row.img_path}}" alt="Poster Not Found"/>
+                <img class="border d-flex justify-content-center align-items-center" src="{{ row.img_path }}" alt="Poster Not Found"/>
                 <article class="d-grid gap-1">
-                    <h5>{{row.name}}</h5>
-                    <span>{{row.duration}} min</span>
-                    <span>User Rating: {{row.user_rating}}</span>
+                    <h5>{{ row.name }}</h5>
+                    <span>{{ row.duration }} min</span>
+                    <span>User Rating: {{ row.user_rating }}</span>
                 </article>
-            </a>{% endfor %}
-        </main>{% if data.has_next %}
-        <a class="infinite-more-link" href="{% url 'index' %}{% querystring q=request.GET.q p=data.next_page_number %}">More</a>{% endif %}{% else %}<main class="d-flex justify-content-center align-items-center">Movies Not Found</main>{% endif %}{% endblock %}
+            </a>
+            {% endfor %}
+        </main>
+        {% if data.has_next %}
+            <a class="infinite-more-link" href="{% url 'index' %}{% querystring q=request.GET.q p=data.next_page_number %}">More</a>
+        {% endif %}
+    {% else %}
+        <main class="d-flex justify-content-center align-items-center">Movies Not Found</main>
+    {% endif %}
+{% endblock %}
 
-{% block script %}{% if data %}{% load static %}
+{% block script %}
+    {% if data %}
+        {% load static %}
         <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
         <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
         <script src="{% static 'js/infinite.min.js' %}"></script>
@@ -34,7 +49,9 @@
             var infinite = new Waypoint.Infinite({
               element: $('.infinite-container')[0]
             });
-        </script>{% endif %}{% endblock %}
+        </script>
+    {% endif %}
+{% endblock %}
 
 {% comment %}
 Copyright (C) Pipin Fitriadi - All Rights Reserved

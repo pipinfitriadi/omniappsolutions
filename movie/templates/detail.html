@@ -1,35 +1,40 @@
 {% extends "base.html" %}
 
-{% block title %}{{movie.name}} | {% endblock %}
+{% block title %}{{ movie.name }} | {% endblock %}
 
 {% block style %}
-        <style>
-            img {
-                width: calc(144px * 2);
-                height: calc(213px * 2);
-            }
-        </style>{% endblock %}
+<style>
+    img {
+        width: calc(144px * 2);
+        height: calc(213px * 2);
+    }
+</style>
+{% endblock %}
 
-{% block header %}<input onclick="history.back()" type="button" value="Back"/><br/>
-            <h4>{{movie.name}}</h4>
-            ({{movie.mpaa_rating.type}}: {{movie.mpaa_rating.label}}){% endblock %}
+{% block header %}
+<input onclick="history.back()" type="button" value="Back"/><br/>
+<h4>{{ movie.name }}</h4>
+({{ movie.mpaa_rating.type }}: {{ movie.mpaa_rating.label }})
+{% endblock %}
 
-{% block main %}<main class="container">
-            <div class="row">
-                <img class="col-3 border d-flex justify-content-center align-items-center" src="{{movie.img_path}}" alt="Poster Not Found"/>
-                <div class="col-9">
-                    <h5>Details</h5>
-                    <p class="d-grid gap-2 mb-3">
-                        <span>Genre: {{movie.genre|join:", "}}</span>
-                        <span>Language: {{movie.language}}</span>
-                        <span>Duration: {{movie.duration}} minutes</span>
-                        <span>User Rating: {{movie.user_rating}}</span>
-                    </p>
-                    <h5>Synopsis</h5>
-                    <p>{{movie.description}}</p>
-                </div>
-            </div>
-        </main>{% endblock %}
+{% block main %}
+<main class="container">
+    <div class="row">
+        <img class="col-3 border d-flex justify-content-center align-items-center" src="{{ movie.img_path }}" alt="Poster Not Found"/>
+        <div class="col-9">
+            <h5>Details</h5>
+            <p class="d-grid gap-2 mb-3">
+                <span>Genre: {{ movie.genre|join:", " }}</span>
+                <span>Language: {{ movie.language }}</span>
+                <span>Duration: {{ movie.duration }} minutes</span>
+                <span>User Rating: {{ movie.user_rating }}</span>
+            </p>
+            <h5>Synopsis</h5>
+            <p>{{ movie.description }}</p>
+        </div>
+    </div>
+</main>
+{% endblock %}
 
 {% comment %}
 Copyright (C) Pipin Fitriadi - All Rights Reserved

@@ -6,4 +6,5 @@
 
 flake8
 Django
+django-htmlmin
 python-dotenv
