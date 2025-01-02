@@ -8,6 +8,7 @@
 
 import json
 
+from django.core.paginator import Paginator
 from django.db import transaction
 from django.shortcuts import get_object_or_404, render
 
@@ -16,15 +17,15 @@ from .models import Movie
 
 def index(request):
     query = request.GET.get('q')
+    data = Paginator(
+        Movie.objects.filter(name__icontains=query)
+        if query else Movie.objects.all(),
+        10
+    )
     return render(
         request,
         "index.html",
-        {
-            "data": (
-                Movie.objects.filter(name__icontains=query)
-                if query else Movie.objects.all()
-            )
-        }
+        {"data": data.get_page(request.GET.get("p", 1))}
     )
 
 
