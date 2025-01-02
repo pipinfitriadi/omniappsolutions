@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block style %}
+        <style>
+            img {
+                width: 144px;
+                height: 213px;
+            }
+        </style>{% endblock %}
+
+{% block header %}<input type="search" placeholder="Search movies..." aria-label="Search"/>{% endblock %}
+
+{% block main %}<h4>Popular Movies this month</h4>
+        <main>{% for row in data %}
+            <a href="{% url 'detail' movie_id=row.id %}">
+                <article class="content text-wrap">
+                    <img class="row border" src="{{row.img_path}}" alt="Poster Not Found"/>
+                    <h5 class="row">{{row.name}}</h5>
+                    <span class="row">{{row.duration}} main</span>
+                    <span class="row">User Rating: {{row.user_rating}}</span>
+                </article>{% endfor %}
+            </a>
+        </main>{% endblock %}
+
+{% comment %}
+Copyright (C) Pipin Fitriadi - All Rights Reserved
+
+Unauthorized copying of this file, via any medium is strictly prohibited
+Proprietary and confidential
+Written by Pipin Fitriadi <pipinfitriadi@gmail.com>, 2 January 2025
+{% endcomment %}

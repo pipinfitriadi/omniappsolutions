@@ -9,8 +9,7 @@
 import json
 
 from django.db import transaction
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from .models import Movie
 
@@ -20,7 +19,11 @@ def index(request):
 
 
 def detail(request, movie_id):
-    return HttpResponse("Hello, world. You're at the movie detail.")
+    return render(
+        request,
+        "detail.html",
+        {"movie": get_object_or_404(Movie, pk=movie_id)}
+    )
 
 
 def json_to_db():
