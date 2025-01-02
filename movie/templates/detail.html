@@ -5,9 +5,6 @@
 {% block style %}
         <style>
             img {
-                display: flex;
-                justify-content: space-evenly;
-                align-items: center;
                 width: calc(144px * 2);
                 height: calc(213px * 2);
             }
@@ -19,7 +16,7 @@
 
 {% block main %}<main class="container">
             <div class="row">
-                <img class="col-3 border" src="{{row.img_path}}" alt="Poster Not Found"/>
+                <img class="col-3 border d-flex justify-content-center align-items-center" src="{{movie.img_path}}" alt="Poster Not Found"/>
                 <div class="col-9">
                     <h5>Details</h5>
                     <p class="d-grid gap-2 mb-3">

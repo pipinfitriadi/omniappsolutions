@@ -4,27 +4,26 @@
         <style>
             a { width: 144px; }
             img {
-                display: flex;
-                justify-content: space-evenly;
-                align-items: center;
                 width: 144px;
                 height: 213px;
             }
         </style>{% endblock %}
 
-{% block header %}<input type="search" placeholder="Search movies..." aria-label="Search"/>{% endblock %}
+{% block header %}<form>
+                <input name="q" type="search" placeholder="Search movies..." aria-label="Search"/>
+            </form>{% endblock %}
 
-{% block main %}<h4>Popular Movies this month</h4>
+{% block main %}{% if data %}<h4>Popular Movies this month</h4>
         <main class="d-flex flex-wrap gap-3">{% for row in data %}
             <a href="{% url 'detail' movie_id=row.id %}" class="text-dark link-offset-2 link-underline link-underline-opacity-0">
-                <img class="border" src="{{row.img_path}}" alt="Poster Not Found"/>
-                <h5>{{row.name}}</h5>
+                <img class="border d-flex justify-content-center align-items-center" src="{{row.img_path}}" alt="Poster Not Found"/>
                 <article class="d-grid gap-1">
+                    <h5>{{row.name}}</h5>
                     <span>{{row.duration}} main</span>
                     <span>User Rating: {{row.user_rating}}</span>
-                </article>{% endfor %}
-            </a>
-        </main>{% endblock %}
+                </article>
+            </a>{% endfor %}
+        </main>{% else %}<main class="d-flex justify-content-center align-items-center">Movies Not Found</main>{% endif %}{% endblock %}
 
 {% comment %}
 Copyright (C) Pipin Fitriadi - All Rights Reserved

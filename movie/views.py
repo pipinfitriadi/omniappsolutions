@@ -15,7 +15,17 @@ from .models import Movie
 
 
 def index(request):
-    return render(request, "index.html", {"data": Movie.objects.all()})
+    query = request.GET.get('q')
+    return render(
+        request,
+        "index.html",
+        {
+            "data": (
+                Movie.objects.filter(name__icontains=query)
+                if query else Movie.objects.all()
+            )
+        }
+    )
 
 
 def detail(request, movie_id):
